@@ -1,0 +1,84 @@
+
+<div class="main-section">
+  <div class="head-section">
+    <div class="headLeft-section">
+      <div class="headLeft-sub">
+        <img src="assets/images/hipoo.png" style="
+    height: 60px;
+    padding-bottom: 20px;
+">
+      </div>
+    </div>
+    <div class="headRight-section">
+      <div class="headRight-sub">
+        <h3>Lajy Ion</h3>
+        <small>Lorem ipsum dolor sit amet...</small>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="body-section">
+    <div class="left-section mCustomScrollbar" data-mcs-theme="minimal-dark">
+      <ul>
+        <li>
+          <div class="chatList">
+            <div class="img">
+              <i class="fa fa-circle"></i>
+              <img src="assets/images/user.png">
+            </div>
+            <div class="desc">
+              <small class="time">05:30 am</small>
+              <h5>Luis Yankee</h5>
+              <small>Lorem ipsum dolor sit amet...</small>
+            </div>
+          </div>
+        </li>
+
+        <li *ngIf="isLoaded" class="active">
+          <div class="chatList">
+            <div class="img">
+              <img src="assets/images/user.png">
+            </div>
+            <div class="desc">
+              <small class="time">{{ time | date: 'hh:mm a' }}</small>
+              <h5>{{messages[0].fromId}}</h5>
+<!--              <small>{{messages[0].message}}</small>-->
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+
+    <div class="right-section">
+      <div class="message mCustomScrollbar" data-mcs-theme="minimal-dark">
+        <ul >
+
+          <li  *ngFor="let message of messages" [ngClass]="message.fromId === 'admin' ? 'msg-right' : 'msg-left'">
+            <div class="msg-right-sub">
+              <img src="assets/images/user.png">
+              <div class="msg-desc">
+                {{message.message}}
+              </div>
+              <small>{{ time | date: 'hh:mm a' }}</small>
+            </div>
+          </li>
+<!--          <li class="msg-day"><small>Wednesday</small></li>-->
+
+        </ul>
+      </div>
+      <div class="right-section-bottom">
+        <form [formGroup]="form" (submit)="sendMessageUsingSocket(messages[0].fromId)">
+          <div class="upload-btn">
+            <button class="btn"><i class="fa fa-photo"></i></button>
+            <input type="file" name="myfile" />
+          </div>
+          <input type="text" formControlName="message" placeholder="type here...">
+          <button type="submit" class="btn-send"><i class="fa fa-send"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

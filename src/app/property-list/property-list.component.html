@@ -1,0 +1,230 @@
+<!--<div id="map-container" class="fullwidth-home-map">-->
+
+<!--  <div id="map1" data-map-scroll="false">-->
+<!--    &lt;!&ndash; map goes here &ndash;&gt;-->
+<!--  </div>-->
+
+<!--  <div class="main-search-inner">-->
+
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-12">-->
+
+<!--          <div class="main-search-input">-->
+
+
+<!--            <div class="main-search-input-item location">-->
+<!--              <div id="autocomplete-container" data-autocomplete-tip="type and hit enter">-->
+<!--                <input id="autocomplete-input" type="text" placeholder="Location">-->
+<!--              </div>-->
+<!--              <a href="#"><i class="fa fa-map-marker"></i></a>-->
+<!--            </div>-->
+
+
+
+<!--            <button class="button">Search</button>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--</div>-->
+
+<router-outlet></router-outlet>
+
+<div id="map-container" class="fullwidth-home-map">
+  <div class="map-border">
+    <div id="map1">
+    </div>
+  </div>
+</div>
+
+<!-- List Items -->
+<div class="container">
+  <div class="row">
+    <!-- Sorting - Filtering Section -->
+    <div class="row margin-bottom-25 margin-top-40">
+
+      <div class="col-md-6">
+        <ul class="list-1" style="padding-left: 20px">
+          <li>  <b>{{totalRecords}} Properties found .</b></li>
+
+        </ul>
+
+      </div>
+
+
+
+    </div>
+    <!-- Sorting - Filtering Section / End -->
+    <div class="col-lg-9 col-md-8 padding-right-30" >
+
+
+
+
+      <div class="row">
+
+
+
+        <!-- Listing Item -->
+        <div class="col-lg-12 col-md-12" *ngFor="let p of listPropertyFiltered | paginate: { id : 'propertyPagination',
+                              itemsPerPage: 5,
+                              currentPage: currentPage,
+                               totalItems: totalRecords
+                               } ">
+          <div class="listing-item-container list-layout">
+            <a routerLink="" (click)="OnpropertyDetails(p.id)" class="listing-item">
+
+              <!-- Image -->
+              <div class="listing-item-image">
+                <img src="{{p.thumbnail}}" alt="">
+                <span class="tag">{{p.propertyType}}</span>
+              </div>
+
+              <!-- Content -->
+              <div class="listing-item-content">
+
+                <div class="listing-item-inner">
+                  <h3>{{p.title}} </h3>
+                  <h1>{{p.price |number  }}</h1>
+                  <span>   <i class="im im-icon-Location-2"></i>  {{p.district}} , {{p.municipality}}</span>
+                  <div class="star-rating" data-rating="5.0">
+                    <div class="rating-counter">
+                      <span> {{p.rooms}} <i class="fa fa-bed"> </i>          <span style="padding-left: 20px"></span>                          {{p.size}} sqm<i class="im im-icon-Home-5" ></i> </span>
+                    </div>
+
+                  </div>
+                </div>
+
+                <span class="like-icon"></span>
+
+                <div class="listing-item-details">Friday, August 10</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- Listing Item / End -->
+
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Pagination -->
+          <div class="pagination-container margin-top-20 margin-bottom-40">
+            <nav class="pagination">
+              <pagination-controls id="propertyPagination"
+                                   maxSize="5"
+                                   directionLinks="true"
+                                   (pageChange)="currentPage = $event"></pagination-controls>
+
+            </nav>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination / End -->
+
+    </div>
+
+    <!-- Sidebar
+		================================================== -->
+    <div class="col-lg-3 col-md-4">
+      <div class="sidebar">
+
+
+        <!-- Widget -->
+        <form  [formGroup]="form" (ngSubmit)="onSubmitFilter()" novalidate class="register">
+        <div class="widget margin-bottom-40">
+          <h3 class="margin-top-0 margin-bottom-30">Filters</h3>
+
+
+
+
+          <!-- Row price -->
+          <div class="row with-forms" style="padding-top: 25px">
+            <!-- Type -->
+            <div class="col-md-12">
+
+
+          <label>Select property status : </label>
+              <select class="custom-select"  formControlName="status">
+                <option *ngFor="let status of selectOptions" [ngValue]="status.value">{{status.name}}</option>
+              </select>
+            </div>
+
+
+          </div>
+          <!-- Row / End -->
+
+
+
+          <br>
+
+          <!-- Price Range -->
+          <div class="range-slider" >
+
+            <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"  formControlName="price"></ngx-slider>
+          </div>
+
+
+          <!-- Size Range -->
+          <div class="range-slider" >
+
+            <ngx-slider [(value)]="minSize" [(highValue)]="maxSize" [options]="sizeOptions" formControlName="size"></ngx-slider>
+          </div>
+
+          <!-- rooms slider  -->
+
+          <div class="range-slider" style="padding-top: 25px">
+            <label>Rooms : </label>
+
+            <ngx-slider [(value)]="roomsValue"  [options]="roomOptions"  formControlName="rooms"></ngx-slider>
+          </div>
+          <!-- bathroom slider -->
+          <div class="range-slider" style="padding-top: 25px">
+            <label>Bathrooms : </label>
+
+            <ngx-slider [(value)]="bathroomValue"  [options]="bathroomOptions"  formControlName="bathrooms"></ngx-slider>
+          </div>
+
+
+
+
+          <!-- More Search Options -->
+          <a  class="more-search-options-trigger margin-bottom-5 margin-top-20" data-open-title="More Filters" data-close-title="More Filters" style="padding-top: 25px"></a>
+
+          <div class="more-search-options relative">
+
+            <!-- Checkboxes -->
+            <div class="checkboxes ">
+
+              <div *ngFor="let amenity of amenitiesOptions; let i=index">
+
+                <label class="container"> {{amenity.name}}
+                  <input type="checkbox" [value]="amenity.value" (change)="onCheckboxChange($event)" >
+                  <span class="checkmark"></span>
+                </label>
+
+              </div>
+            </div>
+            <!-- Checkboxes / End -->
+
+          </div>
+          <!-- More Search Options / End -->
+
+          <button class="button fullwidth margin-top-25" >Update</button>
+
+        </div>
+        <!-- Widget / End -->
+        </form>
+      </div>
+    </div>
+    <!-- Sidebar / End -->
+
+  </div>
+</div>

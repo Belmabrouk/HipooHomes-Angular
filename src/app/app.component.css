@@ -1,0 +1,168 @@
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+
+
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+.close-button {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap
+}
+
+.topright {
+  position: absolute;
+  right: 0;
+  top: 0
+}
+.discussion {
+  width: 250px;
+  height: 250px;
+}
+#ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#li{
+  display:inline-block;
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.him{
+  background: #eee;
+  float: left;
+}
+
+.me{
+  float: right;
+  background: #0084ff;
+  color: #fff;
+}
+
+.him + .me{
+  border-bottom-right-radius: 5px;
+}
+
+.me + .me{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.me:last-of-type {
+  border-bottom-right-radius: 30px;
+}
+
+div.discussion {
+
+  overflow: scroll;
+  border:1px solid #E6E6E6;
+}
+
+.discussion::-webkit-scrollbar {
+  display: none;
+}
+.round-button {
+  display:block;
+  width:80px;
+  height:80px;
+  line-height:80px;
+  border: 2px solid #f5f5f5;
+  border-radius: 50%;
+  color:#f5f5f5;
+  text-align:center;
+  text-decoration:none;
+  background: #555777;
+  box-shadow: 0 0 3px gray;
+  font-size:20px;
+  font-weight:bold;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+}
+.round-button:hover {
+  background: #1d78cb;
+}
+.input-message {
+  /* Tell the input to use all the available space */
+  flex-grow:2;
+  /* And hide the input's outline, so the form looks like the outline */
+  border:none;
+  height: 45px;
+
+}
+
+.input-message:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
+.chat-box-tray{
+  display:flex;
+  flex-direction:row;
+
+  height: 45px;
+
+  padding:2px;
+}
+.send-button {
+  /* Just a little styling to make it pretty */
+  border:1px solid blue;
+  background:blue;
+  color:white;
+}

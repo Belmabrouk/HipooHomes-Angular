@@ -1,0 +1,278 @@
+
+<!-- Slider
+================================================== -->
+<div >
+
+  <ng-image-slider #nav
+                   [images]="imageArray"
+                   [infinite]="false"
+                   [autoSlide]="1"
+                   [imageSize]="{width: '40%', height: 400}"
+                   slideImage="1"></ng-image-slider>
+</div>
+
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <div class="row sticky-wrapper">
+    <div class="col-lg-8 col-md-8 padding-right-30">
+
+      <!-- Titlebar -->
+      <div id="titlebar" class="listing-titlebar">
+        <div class="listing-titlebar-title">
+          <h2>{{property.title}} <span class="listing-tag">{{property.propertyType}}</span></h2>
+          <span>
+						<a href="#listing-location" class="listing-address">
+							<i class="fa fa-map-marker"></i>
+              {{property.address}} , {{property.district}} {{property.municipality}}
+						</a>
+					</span>
+          <div class="star-rating" data-rating="5">
+            <div class="rating-counter">
+              <h2>{{property.price |currency:'EUR':true }} </h2>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Listing Nav -->
+      <div id="listing-nav" class="listing-nav-container">
+        <ul class="listing-nav">
+          <li><a href="#listing-overview"  class="active">Overview</a></li>
+          <li><a href="#listing-pricing-list">Calculator</a></li>
+          <li><a href="#listing-location">Location</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Overview -->
+      <div id="listing-overview" class="listing-section">
+
+        <!-- Description -->
+
+        <p>
+          Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit risus at metus.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.
+        </p>
+
+
+        <!-- Listing Contacts -->
+        <div class="listing-links-container">
+
+
+          <div class="clearfix"></div>
+
+
+          <div class="clearfix"></div>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+        <!-- Amenities -->
+        <h3 class="listing-desc-headline">Amenities</h3>
+        <ul class="listing-features checkboxes margin-top-0">
+          <li *ngIf="property.haslift">Elevator in building</li>
+          <li *ngIf="property.AC">	Air Conditioning</li>
+          <li *ngIf="property.fittedWardrobe">Fitted Wardrobe</li>
+          <li *ngIf="property.garden">Garden</li>
+          <li *ngIf="property.pool">Pool</li>
+          <li *ngIf="property.garage">Garage</li>
+          <li > {{property.rooms}} rooms</li>
+          <li > {{property.bathrooms}} bathrooms</li>
+          <li > {{property.size}} sqm</li>
+
+        </ul>
+      </div>
+
+
+      <!-- Calculator -->
+      <div id="listing-pricing-list" class="listing-section add-review-box">
+        <h3 class="listing-desc-headline margin-top-70 margin-bottom-30">Calculator</h3>
+
+        <form [formGroup]="formCalculator"  class="form-horizontal" style="padding-top: 50px">
+
+          <div class="form-group" style="padding-bottom: 50px">
+            <label class="control-label col-sm-4" ><b>Property price:</b></label>
+            <div class="col-sm-4" ></div>
+            <div class="col-sm-4" >
+              <label class="control-label col-sm-6" >{{property.price |currency:'EUR':true}}   </label>
+            </div>
+          </div>
+
+          <div class="form-group" style="padding-bottom: 50px">
+            <label class="control-label col-sm-4" ><b>Taxes and expenses:</b></label>
+            <div class="col-sm-4" ></div>
+            <div class="col-sm-4" >
+              <label class="control-label col-sm-6" >{{taxes |currency:'EUR':true}}   </label>
+            </div>
+          </div>
+
+          <div class="form-group" style="padding-bottom: 100px">
+            <label class="control-label col-sm-4" > <b>Price including taxes:</b></label>
+            <div class="col-sm-4" ></div>
+            <div class="col-sm-4" >
+              <label class="control-label col-sm-6" >{{pricePlustaxes |currency:'EUR':true}}   </label>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="control-label col-sm-4" ><b>Down payment:</b></label>
+            <div class="col-sm-6">
+              <input formControlName="downPayment" type="number" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" ><b>Interest rate %:</b></label>
+            <div class="col-sm-6">
+              <input formControlName="interestRate" type="number" class="form-control" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4"  ><b>Loan term (yrs):</b></label>
+            <div class="col-sm-6">
+              <input formControlName="loanTerm" type="number" class="form-control" >
+            </div>
+          </div>
+
+        </form>
+
+        <div style="padding-top: 250px">
+          <div class="form-group col-lg-3" ></div>
+          <div class="form-group" >
+            <label class="control-label col-sm-4"  ><b>Monthly Payment:</b></label>
+            <div class="col-sm-4">
+              <input  type="text" class="form-control"value='{{monthlyPayment  }}' disabled>
+            </div>
+          </div>
+        </div>
+         </div>
+      <!-- Food Menu / End -->
+
+
+
+      <!-- Location -->
+      <div id="listing-location" class="listing-section">
+        <h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
+
+        <div id="map-container" >
+        <div class="map-border">
+          <div id="map1">
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+      <!-- Add Review Box -->
+      <div id="contact" class="add-review-box">
+
+        <!-- Add Review -->
+        <h3 class="listing-desc-headline margin-bottom-10">Contact</h3>
+
+
+
+        <!-- Review Comment -->
+        <form id="add-comment" class="add-comment">
+          <fieldset>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name:</label>
+                <input type="text" value=""/>
+              </div>
+
+              <div class="col-md-6">
+                <label>Email:</label>
+                <input type="text" value=""/>
+              </div>
+            </div>
+
+            <div>
+              <label>Message:</label>
+              <textarea cols="40" rows="3"></textarea>
+            </div>
+
+          </fieldset>
+
+          <button class="button">Submit Review</button>
+          <div class="clearfix"></div>
+        </form>
+
+      </div>
+      <!-- Add Review Box / End -->
+
+
+    </div>
+
+
+    <!-- Sidebar
+    ================================================== -->
+    <div class="col-lg-4 col-md-4 margin-top-75 sticky">
+
+
+      <!-- Verified Badge -->
+      <div class="verified-badge with-tip" data-tip-content="Listing has been verified and belongs the business owner or manager.">
+        <i class="sl sl-icon-check"></i> Verified Listing
+      </div>
+
+      <!-- Book Now -->
+      <div id="booking-widget-anchor" class="boxed-widget booking-widget margin-top-35">
+        <h3><i class="fa fa-calendar-check-o "></i> Booking</h3>
+
+        <!-- Book Now -->
+        <a (click)="onBookProperty(id)"  class="button book-now fullwidth margin-top-5"> Book Now</a>
+      </div>
+      <!-- Book Now / End -->
+
+
+
+
+
+
+
+      <!-- Contact -->
+      <div class="boxed-widget margin-top-35">
+        <div class="hosted-by-title">
+          <h4><span>Hosted by</span> Idealista.es</h4>
+          <a href="#contact" class="hosted-by-avatar"><img src="assets/images/dashboard-avatar.jpg" alt=""></a>
+        </div>
+        <ul class="listing-details-sidebar">
+          <li><i class="sl sl-icon-phone"></i> (123) 123-456</li>
+          <li><i class="fa fa-envelope-o"></i> <a ><span class="__cf_email__" data-cfemail="12667d7f52776a737f627e773c717d7f">contact@idealista.com</span></a></li>
+        </ul>
+
+        <ul class="listing-details-sidebar social-profiles">
+          <li><a href="#" class="facebook-profile"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+          <li><a href="#" class="twitter-profile"><i class="fa fa-twitter"></i> Twitter</a></li>
+        </ul>
+
+
+
+        <a href="#contact" class="send-message-to-owner button popup-with-zoom-anim"><i class="sl sl-icon-envelope-open"></i> Send Message</a>
+      </div>
+      <!-- Contact / End-->
+
+
+      <!-- Share / Like -->
+      <div class="listing-share margin-top-40 margin-bottom-40 no-border">
+        <button class="like-button" (click)="bookmarkProperty(id)"><span class="like-icon"></span> Bookmark this property</button>
+        <span>159 people bookmarked this place</span>
+
+
+        <div class="clearfix"></div>
+      </div>
+
+    </div>
+    <!-- Sidebar / End -->
+
+  </div>
+</div>

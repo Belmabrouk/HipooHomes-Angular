@@ -1,0 +1,57 @@
+<mat-toolbar>
+  <span>Edit user</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="userService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+<br>
+        <mat-form-field>
+          <input formControlName="firstName" class="todo" matInput placeholder="Firstname*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="lastName" matInput placeholder="Lastname" class="todo">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="username" matInput placeholder="Username*" class="todo">
+          <mat-error>This field is mandatory.</mat-error>
+             </mat-form-field>
+
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+
+        <mat-form-field>
+          <input formControlName="email" matInput placeholder="Email" class="todo">
+          <mat-error>Invalid email address.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+          <input formControlName="role" matInput placeholder="Role*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <div class="add-bottom-padding">
+          <mat-slide-toggle formControlName="selectedProperty" class="todo">Selected Property</mat-slide-toggle>
+        </div>
+
+
+
+        <mat-form-field *ngIf="this.userService.selectedProperty">
+          <input formControlName="property" matInput placeholder="Property*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
