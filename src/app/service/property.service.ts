@@ -38,4 +38,8 @@ export class PropertyService {
   {
     return this.http.get(this.host+'propertyCount',{observe:"response"})
   }
+
+  getRelatedProperties(id){
+    return this.http.get(this.host+"properties/relatedProperties/"+id)
+  }
 }

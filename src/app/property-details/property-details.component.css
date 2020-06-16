@@ -5,3 +5,8 @@
 .currencyinput input {
   border: 0;
 }
+.other {background-color: #e7e7e7;
+  border-radius : 10px;
+color : black;
+  font-weight: normal;
+}

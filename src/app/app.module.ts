@@ -41,6 +41,8 @@ import {MatAccordion, MatExpansionModule} from "@angular/material/expansion";
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 import {ChatComponent} from "./chat/chat.component";
 import {AdminInboxComponent} from "./admin-inbox/admin-inbox.component";
+import {NgxUsefulSwiperModule} from "ngx-useful-swiper";
+
 
 @NgModule({
   declarations: [
@@ -84,8 +86,7 @@ import {AdminInboxComponent} from "./admin-inbox/admin-inbox.component";
     MatSelectModule,
     MatExpansionModule,
     MatCheckboxModule,
-
-
+    NgxUsefulSwiperModule
 
 
 

@@ -7,6 +7,8 @@ import {DecimalPipe, ViewportScroller} from "@angular/common";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import * as L from 'leaflet';
 import {GestureHandling} from "leaflet-gesture-handling";
+import {SwiperConfigInterface} from "ngx-swiper-wrapper";
+import {SwiperOptions} from "swiper";
 
 @Component({
   selector: 'app-property-details',
@@ -26,6 +28,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
   id: string;
   property;
+  relatedProperty;
   imageArray: any;
 
   //Calculator
@@ -75,6 +78,15 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       loanTerm: [25]
     });
     this.onChanges();
+
+    //get related products
+    this.propertyService.getRelatedProperties(this.id).subscribe(res => {
+      this.relatedProperty = res;
+     console.log("related property : ")
+      console.log(this.relatedProperty)
+
+    })
+
 
 
   }
@@ -142,6 +154,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
 
   }
+
 
 
 }
